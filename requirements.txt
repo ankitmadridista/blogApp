@@ -1,9 +1,9 @@
 # Database and migrations
 
-alembic==1.10.4
-SQLAlchemy==1.4.46
-Flask-SQLAlchemy==2.5.1
-Flask-Migrate==2.5.2
+alembic==1.19.1
+SQLAlchemy==2.0.51
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.1.0
 psycopg2-binary==2.9.9
 
 # Flask Framework
