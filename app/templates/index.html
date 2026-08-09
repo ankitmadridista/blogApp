@@ -14,7 +14,7 @@
             {% for error in form.post.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
         </div>
         <div class="mb-2">
-            {{ form.tags(class='form-control mb-1', placeholder='Tags: python, flask, web (comma separated)') }}
+            {{ form.tags(class='form-control mb-1', placeholder='Add tags (e.g., travel, lifestyle, tips)') }}
             <div class="form-text small">Separate tags with commas. Max 5 tags.</div>
         </div>
         {{ form.submit(class='btn btn-primary btn-sm') }}
