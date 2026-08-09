@@ -41,7 +41,10 @@ def index():
         return redirect(url_for('index'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
+        page=page,
+        per_page=app.config['POSTS_PER_PAGE'],
+        error_out=False
+    )
     next_url = url_for('index', page=posts.next_num) \
         if posts.has_next else None
     prev_url = url_for('index', page=posts.prev_num) \
@@ -56,7 +59,10 @@ def index():
 def explore():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter(Post.is_deleted == False).order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
+        page=page,
+        per_page=app.config['POSTS_PER_PAGE'],
+        error_out=False
+    )
     next_url = url_for('explore', page=posts.next_num) \
         if posts.has_next else None
     prev_url = url_for('explore', page=posts.prev_num) \
@@ -143,7 +149,10 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
     posts = user.posts.filter(Post.is_deleted == False).order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
+        page=page,
+        per_page=app.config['POSTS_PER_PAGE'],
+        error_out=False
+    )
     next_url = url_for('user', username=user.username, page=posts.next_num) \
         if posts.has_next else None
     prev_url = url_for('user', username=user.username, page=posts.prev_num) \
@@ -522,7 +531,11 @@ def tag(name):
     page = request.args.get('page', 1, type=int)
     posts = tag.posts.filter(Post.is_deleted == False) \
                      .order_by(Post.timestamp.desc()) \
-                     .paginate(page, app.config['POSTS_PER_PAGE'], False)
+                     .paginate(
+                        page=page,
+                        per_page=app.config['POSTS_PER_PAGE'],
+                        error_out=False
+                    )
     next_url = url_for('tag', name=name, page=posts.next_num) if posts.has_next else None
     prev_url = url_for('tag', name=name, page=posts.prev_num) if posts.has_prev else None
     return render_template('tag.html', title=f'#{name}', tag=tag,
@@ -597,7 +610,11 @@ def admin_dashboard():
 @admin_required
 def admin_users():
     page = request.args.get('page', 1, type=int)
-    users = User.query.order_by(User.username).paginate(page, 25, False)
+    users = User.query.order_by(User.username).paginate(
+        page=page,
+        per_page=25,
+        error_out=False
+    )
     return render_template('admin/users.html', title='Admin — Users', users=users)
 
 
@@ -621,7 +638,11 @@ def admin_toggle_user(id):
 @admin_required
 def admin_posts():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.timestamp.desc()).paginate(page, 25, False)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page=page,
+        per_page=25,
+        error_out=False
+    )
     return render_template('admin/posts.html', title='Admin — Posts', posts=posts)
 
 
@@ -642,7 +663,11 @@ def admin_toggle_post(id):
 @admin_required
 def admin_comments():
     page = request.args.get('page', 1, type=int)
-    comments = Comment.query.order_by(Comment.timestamp.desc()).paginate(page, 25, False)
+    comments = Comment.query.order_by(Comment.timestamp.desc()).paginate(
+        page=page,
+        per_page=25,
+        error_out=False
+    )
     return render_template('admin/comments.html', title='Admin — Comments', comments=comments)
 
 
