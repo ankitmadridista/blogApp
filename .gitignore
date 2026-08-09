@@ -16,7 +16,7 @@ app.db
 *.db
 
 # Flask migrations
-migrations/
+# Migration files are tracked in Git
 *.egg-info
 
 # Virtual environment
