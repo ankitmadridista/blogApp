@@ -73,7 +73,7 @@ A full-featured blogging platform built with Flask, deployed on Vercel with a Ne
 
 ```bash
 git clone <your-repository-url>
-cd blogApp
+cd blogg-sphere
 
 python -m venv venv
 # Windows
@@ -81,7 +81,7 @@ venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
 
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ### Environment
@@ -91,7 +91,7 @@ Create a `.flaskenv` file in the project root (never commit this):
 ```
 FLASK_APP=blogApp.py
 FLASK_DEBUG=1
-CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
+CLOUDINARY_URL=cloudinary://716181831918575:UiLgnivhGUavp33cd3pr4sQ9SM8@dbqjfiy8j
 ```
 
 The app falls back to a local `app.db` SQLite file when `DATABASE_URL` is not set.
